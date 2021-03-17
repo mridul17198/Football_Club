@@ -43,15 +43,19 @@ module.exports = function(_,passport,User,validator) {
             errors.forEach((error) => {
                 messages.push(error.msg);
             });
-            if(req.url ==='/')
+            if(messages.length > 0)
             {
-                req.flash('error', messages);
-                res.redirect('/');
+                if(req.url ==='/')
+                {
+                    req.flash('error', messages);
+                    res.redirect('/');
+                }
+                else{
+                    req.flash('error', messages);
+                    res.redirect('/signup');
+                }
             }
-            else{
-                req.flash('error', messages);
-                res.redirect('/signup');
-            }
+            return next();
         },
         
         postSignUp: passport.authenticate('local.signup', {

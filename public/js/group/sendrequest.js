@@ -1,19 +1,20 @@
-$(document).ready(function(){
+$(document).ready(function() {
     var socket = io();
-    
+
     var room = $('#groupName').val();
     var sender = $('#sender').val();
-    
-    socket.on('connect', function(){
-        var params = {
-            sender: sender
+    console.log(room);
+    console.log(sender);
+    socket.on('connect', function() {
+        var params ={
+            sender:sender
         }
-        
+
         socket.emit('joinRequest', params, function(){
-            //console.log('Joined');
+            console.log('joined');  
         });
     });
-    
+
     socket.on('newFriendRequest', function(friend){
         $('#reload').load(location.href + ' #reload');
         
@@ -50,8 +51,8 @@ $(document).ready(function(){
             });
             $('#reload').load(location.href + ' #reload');
         });
-    });
-    
+    })
+
     $('#add_friend').on('submit', function(e){
         e.preventDefault();
         
@@ -73,7 +74,7 @@ $(document).ready(function(){
             }
         })
     });
-    
+
     $('#accept_friend').on('click', function(){
         var senderId = $('#senderId').val();
         var senderName = $('#senderName').val();
@@ -107,21 +108,5 @@ $(document).ready(function(){
         });
         $('#reload').load(location.href + ' #reload');
     });
-});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+})

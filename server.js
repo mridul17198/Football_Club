@@ -10,11 +10,13 @@ const flash = require('connect-flash');
 const container = require('./container');
 const passport = require('passport');
 const socketIO = require('socket.io');
+const {Users} = require('./helpers/UsersClass');
+const {Global} = require('./helpers/Global');
 
-container.resolve(function(users,_,admin,home,group){
+container.resolve(function(users,_,admin,home,group,results,privatechat){
 
     mongoose.Promise = global.Promise;
-    mongoose.connect('mongodb+srv://Mridul_Khaitan:MridulNitesh@mydatabase.fhc4o.mongodb.net/<Footballclub>?retryWrites=true&w=majority',{
+    mongoose.connect('mongodb+srv://username:password@mydatabase.fhc4o.mongodb.net/<database>?retryWrites=true&w=majority',{
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true});
@@ -31,7 +33,10 @@ container.resolve(function(users,_,admin,home,group){
 
         ConfigureExpress(app);
 
-        require('./socket/groupchat')(io);
+        require('./socket/groupchat')(io,Users);
+        require('./socket/friend')(io);
+        require('./socket/globalroom')(io,Global,_);
+        require('./socket/privatemessage')(io);
 
         //Setup Routers
         const router = require('express-promise-router')();
@@ -39,6 +44,8 @@ container.resolve(function(users,_,admin,home,group){
         admin.SetRouting(router);
         home.SetRouting(router);
         group.SetRouting(router);
+        results.SetRouting(router);
+        privatechat.SetRouting(router);
         app.use(router);
     }
 
