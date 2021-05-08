@@ -3,6 +3,7 @@ $(document).ready(function(){
 
     var room = $('#groupName').val();
     var sender = $('#sender').val();
+    var userPic = $('#name-image').val();
 
     socket.on('connect',function() {
         console.log('Yea: User Connected Successfully');
@@ -24,7 +25,7 @@ $(document).ready(function(){
         $(document).on('click','#val',function() {
             $('#name').text('@'+$(this).text());
             $('#receiverName').val($(this).text());
-            $('#nameLink').attr("href","/profile/",$(this).text());
+            $('#nameLink').attr("href", "/profile/"+$(this).text());
         });
 
         $('#numValue').text('('+users.length+')');
@@ -36,6 +37,7 @@ $(document).ready(function(){
         var message = Mustache.render(template, {
             text: data.text,
             sender: data.from,
+            userImage: data.image
         });
         $('#messages').append(message);
     })
@@ -46,7 +48,8 @@ $(document).ready(function(){
         socket.emit('createMessage', {
             text: msg,
             room: room,
-            from: sender
+            sender: sender,
+            userPic: userPic
         }, function(){
             $('#msg').val('');
         });

@@ -205,17 +205,11 @@ member_list li:hover {
 .card .user {
     border-radius: 50%;
     display: block;
-    height: 120px;
+    height: 200px;
     margin: -55px auto 0;
     overflow: hidden;
-    width: 120px;
+    width: 200px;
 }
-
-    .card .user img {
-        background: none repeat scroll 0 0 #FFFFFF;
-        border: 4px solid #FFFFFF;
-        width: 100%;
-    }
 
 .card .content {
     background-color: rgba(0, 0, 0, 0);
@@ -339,12 +333,11 @@ member_list li:hover {
     padding-top: 15px;
 }
 
-#val {
+#val{
     cursor: pointer;
     text-decoration: none;
     color: #03182b;
 }
-
 
 .nav-label-icon {
     top: -9px;
@@ -371,7 +364,7 @@ member_list li:hover {
 }
 
 .dropdown-tag {
-    background: #03182b;
+    background: #03A9F4;
     color: white;
     padding: 4px;
     margin-bottom: 15px;
@@ -404,4 +397,32 @@ member_list li:hover {
 
 #reload{
     padding: 0px 15px 0px 15px;
+}
+
+.cover-img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.cover-img img{
+    min-height: 100%;
+    min-width: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.dropdown-img{
+    width: 40px;
+    height: 40px;
 }

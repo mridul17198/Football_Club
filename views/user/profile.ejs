@@ -18,7 +18,7 @@
 </head>
 
 <body>
-<%- include ../partials/navbar.ejs %>
+    <%- include ('../partials/navbar.ejs') %> 
 
     <div class="col-md-12 mob-clearfix margin-80">
         <input type="hidden" id="name-user" value="<%= user.username %>">
@@ -50,20 +50,20 @@
                                     <div class="profile-usermenu">
                                         <ul class="nav">
                                             <li>
-                                                <a href="/profile/<%= user.username %>" style="color:#4aa1f3 !important">
-                                                    <i class="fa fa-home" style="color:#4aa1f3 !important"></i>
+                                                <a href="/profile/<%= user.username %>" style="color:#03182b !important">
+                                                    <i class="fa fa-home" style="color:#03182b !important"></i>
                                                     Overview
                                                 </a>
                                             </li>
                                             <li class="active">
-                                                <a href="/settings/profile" style="color:#4aa1f3 !important">
-                                                    <i class="fa fa-user" style="color:#4aa1f3 !important"></i>
+                                                <a href="/settings/profile" style="color:#03182b !important">
+                                                    <i class="fa fa-user" style="color:#03182b !important"></i>
                                                     Profile
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="/settings/interests" style="color:#4aa1f3 !important">
-                                                    <i class="fa fa-check" style="color:#4aa1f3 !important"></i>
+                                                <a href="/settings/interests" style="color:#03182b !important">
+                                                    <i class="fa fa-check" style="color:#03182b !important"></i>
                                                     Interests
                                                 </a>
                                             </li>
@@ -87,7 +87,7 @@
 
                             <form class="form" role="form" method="POST" id="form" action="#">
 
-                                <h3 style="margin-top:0px; color:#4aa1f3 !important">Personal Information</h3>
+                                <h3 style="margin-top:0px; color:#03182b !important">Personal Information</h3>
                                 <hr />
                                 <div class="row">
                                    <div class="col-md-12">
@@ -101,16 +101,9 @@
                                     </div>
 
                                 </div>
-                                <label style="color:#4aa1f3 !important">Gender : </label>
-                                <label style="color:#4aa1f3 !important; margin-right:10px;"></label>
-                                <% if(typeof user.gender !== 'undefined') {%>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="gender" value="<%= user.gender %>" id="gender" checked />
-                                        <%= user.gender %>
-                                    </label><br>
-                                <% } %>
-                                
-                                
+                                <label style="color:#03182b !important">Gender : </label>
+                                <label style="color:#03182b !important; margin-right:10px;"></label>
+
                                 <label class="radio-inline">
                                     <input type="radio" name="gender" value="Male" id="gender" />
                                     Male
@@ -122,19 +115,19 @@
 
 
                                 <div class="" style="margin-top:20px">
-                                <label style="color:#4aa1f3 !important">Mantra</label><br>
+                                <label style="color:#03182b !important">Mantra</label><br>
                                     <textarea name="mantra" id="mantra" class="form-control input-lg" rows="5" placeholder="A one liner sentence"><%= user.mantra %></textarea>
                                 </div>
 
                                 <div>
-                                    <label style="color:#4aa1f3 !important">Add Profile Photo</label><br>
+                                    <label style="color:#03182b !important">Add Profile Photo</label><br>
                                     <input type="hidden" id="user-image" value="<%= user.userImage %>">
-                                    <button class="btn btn-lg add-btn" style="background-color:#4aa1f3 !important; color:white" type="button">Add Profile Image</button>
+                                    <button class="btn btn-lg add-btn" style="background-color:#03182b !important; color:white" type="button">Add Profile Image</button>
                                     <input type="file" class="form-control" name="upload" id="add-input" style="display: none">
                                     <span id="completed"></span>
                                 </div>
 
-                                <input type="submit" id="profile" value="SAVE PROFILE" class="btn btn-lg btn-default btn-block save-profile-btn" name="submit" style="background-color:#4aa1f3 !important; color:white !important">
+                                <input type="submit" id="profile" value="SAVE PROFILE" class="btn btn-lg btn-default btn-block save-profile-btn" name="submit" style="background-color:#03182b !important; color:white !important">
 
                             </form>
 

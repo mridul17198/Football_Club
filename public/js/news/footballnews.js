@@ -5,10 +5,11 @@ $(document).ready(function(){
 
 function GetResult(){
     $.ajax({
-        url: 'http://content.guardianapis.com/football?page-size=50&order-by=newest&show-fields=all&api-key=8b435306-1b3a-480d-b96d-32b7d969507a',
+        url: `http://content.guardianapis.com/football?page-size=50&order-by=newest&show-fields=all&api-key=${process.env.GUARDIAN_API_KEY}`,
         type: 'GET',
         dataType: 'json',
         success: function(data){
+            console.log(data);
             var results = '';
             
             $.each(data.response.results, function(i){
@@ -16,7 +17,7 @@ function GetResult(){
                 results += '<div class="col-md-12 news-post">';
                 results += '<div class="row">';
                 
-                results += '<a href='+data.response.results[i].webUrl+' target="_blank" style="color:#4aa1f3; text-decoration:none;">';
+                results += '<a href='+data.response.results[i].webUrl+' target="_blank" style="color:#03182b; text-decoration:none;">';
                 results += '<div class="col-md-2">';
                 results += '<img src='+data.response.results[i].fields.thumbnail+' class="img-responsive" />'
                 results += '</div>';

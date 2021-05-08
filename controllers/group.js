@@ -37,9 +37,16 @@ module.exports = function(Users,async,Message,Group,FriendResult) {
                             }, "body": {$first:"$$ROOT"}
                             }
                         }
-                    ],(err,result) =>{
-                        callback(err,result);
-                    });
+                    ],function(err, newResult){
+                        const arr = [
+                            {path: 'body.sender', model: 'User'},
+                            {path: 'body.receiver', model: 'User'}
+                        ];
+                        
+                        Message.populate(newResult, arr, (err, newResult1) => {
+                            callback(err, newResult1);
+                        });
+                    })
                 },
                 function(callback){
                     Group.find({})

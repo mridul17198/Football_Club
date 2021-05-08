@@ -42,7 +42,6 @@ $(document).ready(function(){
         if(upload === ''){
             $('#add-input').val(image);
         }
-        
         if(username == '' || fullname == '' || country == '' || gender == '' || mantra == ''){
             valid = false;
             $('#error').html('<div class="alert alert-danger">You cannot submit an empty field</div>');

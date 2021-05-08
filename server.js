@@ -12,17 +12,17 @@ const passport = require('passport');
 const socketIO = require('socket.io');
 const {Users} = require('./helpers/UsersClass');
 const {Global} = require('./helpers/Global');
+const compression = require('compression');
+const helmet = require('helmet');
 
-container.resolve(function(users,_,admin,home,group,results,privatechat){
+container.resolve(function(users,_,admin,home,group,results,privatechat,profile,interests,news){
 
     mongoose.Promise = global.Promise;
-    mongoose.connect('mongodb+srv://username:password@mydatabase.fhc4o.mongodb.net/<database>?retryWrites=true&w=majority',{
+    mongoose.connect(process.env.MONGODB_URI,{
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true});
-
     const app = SetupExpress();
-
     function SetupExpress(){
         const app = express();
         const server = http.createServer(app);
@@ -30,7 +30,6 @@ container.resolve(function(users,_,admin,home,group,results,privatechat){
         server.listen(3000, function(){
             console.log('Listening on port 3000');
         });
-
         ConfigureExpress(app);
 
         require('./socket/groupchat')(io,Users);
@@ -46,11 +45,13 @@ container.resolve(function(users,_,admin,home,group,results,privatechat){
         group.SetRouting(router);
         results.SetRouting(router);
         privatechat.SetRouting(router);
+        profile.SetRouting(router);
+        interests.SetRouting(router);
+        news.SetRouting(router);
         app.use(router);
     }
 
     function ConfigureExpress(app){
-
         require('./passport/passport-local');
         require('./passport/passport-facebook');
         require('./passport/passport-google');
@@ -61,7 +62,7 @@ container.resolve(function(users,_,admin,home,group,results,privatechat){
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({extended:true}));
         app.use(session({
-            secret: 'thisisasecretkey',
+            secret: process.env.SECRET_KEY,
             resave: true,
             saveUninitialized: false,
             store: new MongoStore({mongooseConnection:mongoose.connection})
@@ -70,6 +71,10 @@ container.resolve(function(users,_,admin,home,group,results,privatechat){
         app.use(passport.initialize());
         app.use(passport.session());
         app.locals._ = _;
+
+        app.use(function(req,res){
+            res.render('404');
+        });
     }
 })
 
