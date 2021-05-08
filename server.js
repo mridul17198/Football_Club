@@ -72,9 +72,9 @@ container.resolve(function(users,_,admin,home,group,results,privatechat,profile,
         app.use(passport.session());
         app.locals._ = _;
 
-        // app.use(function(req,res){
-        //     res.render('404');
-        // });
+        app.use(function(req,res){
+            res.render('404');
+        });
     }
 })
 
