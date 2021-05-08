@@ -49,6 +49,9 @@ container.resolve(function(users,_,admin,home,group,results,privatechat,profile,
         interests.SetRouting(router);
         news.SetRouting(router);
         app.use(router);
+        app.use(function(req,res){
+            res.render('404');
+        });
     }
 
     function ConfigureExpress(app){
@@ -71,10 +74,6 @@ container.resolve(function(users,_,admin,home,group,results,privatechat,profile,
         app.use(passport.initialize());
         app.use(passport.session());
         app.locals._ = _;
-
-        app.use(function(req,res){
-            res.render('404');
-        });
     }
 })
 
