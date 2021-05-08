@@ -33,6 +33,7 @@
     "express-promise-router": "^4.0.1",
     "express-session": "^1.17.1",
     "express-validator": "^6.9.2",
+    "forever": "^3.0.4",
     "formidable": "^1.2.2",
     "helmet": "^4.6.0",
     "lodash": "^4.17.20",
