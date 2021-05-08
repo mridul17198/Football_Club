@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "A chat application built with node. mongodb. express and socket.io",
   "main": "index.js",
+  "engines": {
+    "node": "7.10.1",
+    "npm": "5.3.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
